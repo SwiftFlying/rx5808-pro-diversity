@@ -89,7 +89,8 @@ void setupPins() {
     pinMode(PIN_BUTTON_UP_PRESSED, INPUT_PULLUP);
     pinMode(PIN_BUTTON_MODE_PRESSED, INPUT_PULLUP);
     pinMode(PIN_BUTTON_DOWN_PRESSED, INPUT_PULLUP);
-    pinMode(PIN_BUTTON_SAVE_PRESSED, INPUT_PULLUP);
+    pinMode(PIN_BUTTON_OSDSWITCH, INPUT_PULLUP);
+    pinMode(PIN_OSDCONTROL, OUTPUT);
 
     pinMode(PIN_LED_A,OUTPUT);
     #ifdef USE_DIVERSITY
@@ -144,5 +145,11 @@ static void globalMenuButtonHandler(
         pressType == Buttons::PressType::HOLDING
     ) {
         StateMachine::switchState(StateMachine::State::MENU);
+    }
+    else if (
+        button == Button::OSDSWITCH &&
+        pressType == Buttons::PressType::LONG        
+    ) {
+      digitalWrite(PIN_OSDCONTROL, !digitalRead(PIN_OSDCONTROL));
     }
 }

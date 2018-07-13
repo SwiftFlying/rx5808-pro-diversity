@@ -12,7 +12,7 @@ enum class Button : uint8_t {
     UP_PRESSED,
     DOWN_PRESSED,
     MODE_PRESSED,
-    SAVE_PRESSED,
+    OSDSWITCH,
     COUNT
 };
 #define BUTTON_COUNT static_cast<uint8_t>(Button::COUNT)

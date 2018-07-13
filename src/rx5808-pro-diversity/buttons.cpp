@@ -32,7 +32,7 @@ namespace Buttons {
         UPDATE_BUTTON(UP_PRESSED);
         UPDATE_BUTTON(DOWN_PRESSED);
         UPDATE_BUTTON(MODE_PRESSED);
-        UPDATE_BUTTON(SAVE_PRESSED);
+        UPDATE_BUTTON(OSDSWITCH);
 
         #undef UPDATE_BUTTON
     }

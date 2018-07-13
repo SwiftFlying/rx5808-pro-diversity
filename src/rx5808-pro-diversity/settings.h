@@ -38,8 +38,8 @@ SOFTWARE.
 // SSH1106 needs https://github.com/badzz/Adafruit_SH1106 installed.
 //#define SH1106
 
-//#define TVOUT_SCREENS
-#define OLED_128x64_ADAFRUIT_SCREENS
+#define TVOUT_SCREENS
+//#define OLED_128x64_ADAFRUIT_SCREENS
 
 // Enable this if your screen is upside down.
 //#define USE_FLIP_SCREEN
@@ -110,10 +110,11 @@ SOFTWARE.
 
 // Buttons (optional, for comfort)
 #define PIN_BUTTON_DOWN_PRESSED 4
-#define PIN_BUTTON_SAVE_PRESSED 5
+#define PIN_BUTTON_OSDSWITCH 5
 
 #define PIN_LED 13
 #define PIN_BUZZER 6 // Must be an active buzzer, not passive.
+#define PIN_OSDCONTROL 8
 
 #define PIN_SPI_DATA 10
 #define PIN_SPI_SLAVE_SELECT 11
