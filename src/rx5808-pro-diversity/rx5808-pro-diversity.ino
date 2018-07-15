@@ -148,7 +148,7 @@ static void globalMenuButtonHandler(
     }
     else if (
         button == Button::OSDSWITCH &&
-        pressType == Buttons::PressType::LONG        
+        pressType == Buttons::PressType::SHORT        
     ) {
       digitalWrite(PIN_OSDCONTROL, !digitalRead(PIN_OSDCONTROL));
     }
