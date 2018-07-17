@@ -96,10 +96,20 @@ void setupPins() {
     #ifdef USE_DIVERSITY
         pinMode(PIN_LED_B,OUTPUT);
     #endif
+    #ifdef USE_DUAL_DIVERSITY
+        pinMode(PIN_LED_B,OUTPUT);
+        pinMode(PIN_LED_C,OUTPUT);
+        pinMode(PIN_LED_D,OUTPUT);
+    #endif
 
     pinMode(PIN_RSSI_A, INPUT_PULLUP);
     #ifdef USE_DIVERSITY
         pinMode(PIN_RSSI_B, INPUT_PULLUP);
+    #endif
+    #ifdef USE_DUAL_DIVERSITY
+        pinMode(PIN_RSSI_B, INPUT_PULLUP);
+        pinMode(PIN_RSSI_C, INPUT_PULLUP);
+        pinMode(PIN_RSSI_D, INPUT_PULLUP);
     #endif
 
     pinMode(PIN_SPI_SLAVE_SELECT, OUTPUT);

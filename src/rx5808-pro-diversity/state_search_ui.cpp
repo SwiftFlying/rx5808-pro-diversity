@@ -44,6 +44,20 @@
     #define RX_TEXT_H (CHAR_HEIGHT * RX_TEXT_SIZE)
     #define RX_TEXT_A_Y ((GRAPH_A_Y + GRAPH_H / 2) - (RX_TEXT_H / 2))
     #define RX_TEXT_B_Y ((GRAPH_B_Y + GRAPH_H / 2) - (RX_TEXT_H / 2))
+#elif defined(USE_DUAL_DIVERSITY)
+    #define GRAPH_H SCREEN_HEIGHT / 4
+    #define GRAPH_A_Y 0
+    #define GRAPH_B_Y (1 * GRAPH_H - 1)
+    #define GRAPH_C_Y (2 * GRAPH_H - 1)
+    #define GRAPH_D_Y (3 * GRAPH_H - 1)
+
+    #define RX_TEXT_SIZE 1
+    #define RX_TEXT_X (BORDER_GRAPH_L_X + 4)
+    #define RX_TEXT_H (CHAR_HEIGHT * RX_TEXT_SIZE)
+    #define RX_TEXT_A_Y ((GRAPH_A_Y + GRAPH_H / 2) - (RX_TEXT_H / 2))
+    #define RX_TEXT_B_Y ((GRAPH_B_Y + GRAPH_H / 2) - (RX_TEXT_H / 2))
+    #define RX_TEXT_C_Y ((GRAPH_C_Y + GRAPH_H / 2) - (RX_TEXT_H / 2))
+    #define RX_TEXT_D_Y ((GRAPH_D_Y + GRAPH_H / 2) - (RX_TEXT_H / 2))
 #else
     #define GRAPH_H (SCREEN_HEIGHT - 1)
     #define GRAPH_Y 0
@@ -178,6 +192,91 @@ void StateMachine::SearchStateHandler::drawRssiGraph() {
 
           Ui::setCursor(RX_TEXT_X, RX_TEXT_B_Y);
           Ui::display.print(PSTR2("A"));
+          
+    #elif defined(USE_DUAL_DIVERSITY)
+        
+        Ui::drawGraph(
+            Receiver::rssiALast,
+            RECEIVER_LAST_DATA_SIZE,
+            100,
+            GRAPH_X,
+            GRAPH_A_Y,
+            GRAPH_W,
+            GRAPH_H
+        );
+
+        Ui::drawGraph(
+            Receiver::rssiBLast,
+            RECEIVER_LAST_DATA_SIZE,
+            100,
+            GRAPH_X,
+            GRAPH_B_Y,
+            GRAPH_W,
+            GRAPH_H
+        );
+
+        Ui::drawGraph(
+            Receiver::rssiCLast,
+            RECEIVER_LAST_DATA_SIZE,
+            100,
+            GRAPH_X,
+            GRAPH_C_Y,
+            GRAPH_W,
+            GRAPH_H
+        );
+
+        Ui::drawGraph(
+            Receiver::rssiDLast,
+            RECEIVER_LAST_DATA_SIZE,
+            100,
+            GRAPH_X,
+            GRAPH_D_Y,
+            GRAPH_W,
+            GRAPH_H
+        );
+
+        Ui::drawDashedHLine(
+            GRAPH_X,
+            GRAPH_SEPERATOR_Y + GRAPH_SEPERATOR_Y / 2 + 1,
+            GRAPH_SEPERATOR_W,
+            GRAPH_SEPERATOR_STEP
+        );
+
+        Ui::drawDashedHLine(
+            GRAPH_X,
+            GRAPH_SEPERATOR_Y,
+            GRAPH_SEPERATOR_W,
+            GRAPH_SEPERATOR_STEP
+        );
+
+        Ui::drawDashedHLine(
+            GRAPH_X,
+            GRAPH_SEPERATOR_Y - GRAPH_SEPERATOR_Y / 2 - 1,
+            GRAPH_SEPERATOR_W,
+            GRAPH_SEPERATOR_STEP
+        );
+
+        Ui::drawDashedHLine(
+            GRAPH_X,
+            GRAPH_SEPERATOR_Y + GRAPH_SEPERATOR_Y + 1,
+            GRAPH_SEPERATOR_W,
+            GRAPH_SEPERATOR_STEP
+        );
+
+          Ui::setTextSize(RX_TEXT_SIZE);
+          Ui::setTextColor(INVERSE);
+
+          Ui::setCursor(RX_TEXT_X, RX_TEXT_A_Y);
+          Ui::display.print(PSTR2("A"));
+
+          Ui::setCursor(RX_TEXT_X, RX_TEXT_B_Y);
+          Ui::display.print(PSTR2("B"));
+
+          Ui::setCursor(RX_TEXT_X, RX_TEXT_C_Y);
+          Ui::display.print(PSTR2("C"));
+
+          Ui::setCursor(RX_TEXT_X, RX_TEXT_D_Y);
+          Ui::display.print(PSTR2("D"));
     #else
         Ui::drawGraph(
             Receiver::rssiALast,

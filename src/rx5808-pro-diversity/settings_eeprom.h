@@ -27,6 +27,15 @@ struct EepromSettings {
         uint16_t rssiBMin;
         uint16_t rssiBMax;
     #endif
+    #ifdef USE_DUAL_DIVERSITY
+        Receiver::DiversityMode diversityMode;
+        uint16_t rssiBMin;
+        uint16_t rssiBMax;
+        uint16_t rssiCMin;
+        uint16_t rssiCMax;
+        uint16_t rssiDMin;
+        uint16_t rssiDMax;
+    #endif
 
     #ifdef USE_VOLTAGE_MONITORING
         uint8_t vbatScale;
@@ -61,6 +70,15 @@ PROGMEM const struct {
         Receiver::DiversityMode diversityMode = Receiver::DiversityMode::AUTO;
         uint16_t rssiBMin = RSSI_MIN_VAL;
         uint16_t rssiBMax = RSSI_MAX_VAL;
+    #endif
+    #ifdef USE_DUAL_DIVERSITY
+        Receiver::DiversityMode diversityMode = Receiver::DiversityMode::AUTO;
+        uint16_t rssiBMin = RSSI_MIN_VAL;
+        uint16_t rssiBMax = RSSI_MAX_VAL;
+        uint16_t rssiCMin = RSSI_MIN_VAL;
+        uint16_t rssiCMax = RSSI_MAX_VAL;
+        uint16_t rssiDMin = RSSI_MIN_VAL;
+        uint16_t rssiDMax = RSSI_MAX_VAL;
     #endif
 
     #ifdef USE_VOLTAGE_MONITORING

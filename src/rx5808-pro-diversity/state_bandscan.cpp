@@ -29,6 +29,8 @@ void StateMachine::BandScanStateHandler::onUpdate() {
 
     #ifdef USE_DIVERSITY
         rssiData[orderedChanelIndex] = (Receiver::rssiA + Receiver::rssiB) / 2;
+    #elif defined(USE_DUAL_DIVERSITY)
+        rssiData[orderedChanelIndex] = (Receiver::rssiA + Receiver::rssiB + Receiver::rssiC + Receiver::rssiD) / 4;
     #else
         rssiData[orderedChanelIndex] = Receiver::rssiA;
     #endif

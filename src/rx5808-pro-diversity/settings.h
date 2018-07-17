@@ -68,7 +68,9 @@ SOFTWARE.
 //
 // =============================================================================
 
-#define USE_DIVERSITY
+//#define USE_DIVERSITY
+
+#define USE_DUAL_DIVERSITY
 
 // Enable this to switch receivers much faster. This uses the port registers
 // to switch rather than the Arduino helper functions.
@@ -123,8 +125,16 @@ SOFTWARE.
 #define PIN_RSSI_A A6
 #define PIN_LED_A A0
 #ifdef USE_DIVERSITY
-    #define PIN_LED_B A1
     #define PIN_RSSI_B A7
+    #define PIN_LED_B A1
+#endif
+#ifdef USE_DUAL_DIVERSITY
+    #define PIN_RSSI_B A7
+    #define PIN_LED_B A1
+    #define PIN_RSSI_C A4
+    #define PIN_LED_C A2
+    #define PIN_RSSI_D A5
+    #define PIN_LED_D A3
 #endif
 
 #ifdef USE_VOLTAGE_MONITORING
@@ -137,7 +147,7 @@ SOFTWARE.
 
 // === Diversity ===============================================================
 
-#ifdef USE_DIVERSITY
+#if defined(USE_DIVERSITY) || defined(USE_DUAL_DIVERSITY)
     // RSSI strength should be greater than the value below (percent) over the
     // other receiver before we switch. This pervents flicker when RSSI values
     // are close and delays diversity checks counter.
