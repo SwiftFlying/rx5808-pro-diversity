@@ -1,3 +1,15 @@
+#### QUADVERSITY
+
+The Quadversity fork has added the below features.
+
+- 4 Rx diversity
+- TVout
+- Switching of TVout directly to goggles/screen via an additional 4066
+
+Updated schematic for quadversity with TVout functionality.
+
+![quadversity schematic](docs/img/rx5808-pro-diversity-schematic-quadversity.jpg)
+
 # ![Logo](media/logo.png)
 
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/rx5808-pro-diversity/)
