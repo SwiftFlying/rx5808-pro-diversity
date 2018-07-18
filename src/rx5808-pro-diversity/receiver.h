@@ -78,7 +78,6 @@ namespace Receiver {
 
     bool isRssiStable();
 
-
     void setup();
     void update();
 }

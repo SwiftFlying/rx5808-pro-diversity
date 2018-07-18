@@ -293,8 +293,11 @@ namespace Receiver {
                     break;
             }
         }
-
-        setActiveReceiver(nextReceiver);
+        
+        //  Do not change activeReceiver if OSD is on.  This will turn on a 4066 Rx switch simultaneously with the OSD.
+        if (!digitalRead(PIN_OSDCONTROL)) {
+          setActiveReceiver(nextReceiver);
+        }
     }
 #endif
 #ifdef USE_DUAL_DIVERSITY
@@ -371,9 +374,9 @@ namespace Receiver {
             }
         }
         
-        //  Do not attempt to change Rx if it is the same the currently active Rx.
-        //  If attempted this may have issues with port output.
-        if (nextReceiver != activeReceiver) {
+        //  Do not attempt to change Rx if it is the same the currently active Rx.  If attempted this may have issues with port output.
+        //  Do not change activeReceiver if OSD is on.  This will turn on a 4066 Rx switch simultaneously with the OSD.
+        if (nextReceiver != activeReceiver && !digitalRead(PIN_OSDCONTROL)) {
           setActiveReceiver(nextReceiver);
         }
     }

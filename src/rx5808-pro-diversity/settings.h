@@ -27,7 +27,6 @@ SOFTWARE.
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-
 // === Display Module ==========================================================
 //
 // You can choose one display module only. Only 128x64 OLED displays are
@@ -69,7 +68,6 @@ SOFTWARE.
 // =============================================================================
 
 //#define USE_DIVERSITY
-
 #define USE_DUAL_DIVERSITY
 
 // Enable this to switch receivers much faster. This uses the port registers

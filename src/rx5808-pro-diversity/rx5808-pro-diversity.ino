@@ -43,12 +43,10 @@ SOFTWARE.
 #include "state.h"
 #include "ui.h"
 
-
 static void globalMenuButtonHandler(
     Button button,
     Buttons::PressType pressType
 );
-
 
 void setup()
 {
@@ -90,6 +88,7 @@ void setupPins() {
     pinMode(PIN_BUTTON_MODE_PRESSED, INPUT_PULLUP);
     pinMode(PIN_BUTTON_DOWN_PRESSED, INPUT_PULLUP);
     pinMode(PIN_BUTTON_OSDSWITCH, INPUT_PULLUP);
+    
     pinMode(PIN_OSDCONTROL, OUTPUT);
 
     pinMode(PIN_LED_A,OUTPUT);
@@ -128,6 +127,7 @@ void setupSettings() {
 
 
 void loop() {
+
     Receiver::update();
     Buttons::update();
     StateMachine::update();
@@ -160,6 +160,32 @@ static void globalMenuButtonHandler(
         button == Button::OSDSWITCH &&
         pressType == Buttons::PressType::SHORT        
     ) {
+      // Turn ON/OFF OSD pin and status LED as visual indicator.
       digitalWrite(PIN_OSDCONTROL, !digitalRead(PIN_OSDCONTROL));
+      digitalWrite(PIN_LED, !digitalRead(PIN_LED));
+      // Set all Rx outputs to OFF
+      if (digitalRead(PIN_OSDCONTROL)) {
+        digitalWrite(PIN_LED_A, LOW);
+        #ifdef USE_DIVERSITY
+            digitalWrite(PIN_LED_B, LOW);
+        #endif
+        #ifdef USE_DUAL_DIVERSITY
+        digitalWrite(PIN_LED_B, LOW);
+        digitalWrite(PIN_LED_C, LOW);
+        digitalWrite(PIN_LED_D, LOW);  
+        #endif      
+      } 
+      // Turn back ON activeRx when OSD turned OFF.
+      else {
+        digitalWrite(PIN_LED_A, Receiver::activeReceiver == Receiver::ReceiverId::A);
+        #ifdef USE_DIVERSITY
+        digitalWrite(PIN_LED_B, Receiver::activeReceiver == Receiver::ReceiverId::B);
+        #endif
+        #ifdef USE_DUAL_DIVERSITY
+        digitalWrite(PIN_LED_B, Receiver::activeReceiver == Receiver::ReceiverId::B);
+        digitalWrite(PIN_LED_C, Receiver::activeReceiver == Receiver::ReceiverId::C);
+        digitalWrite(PIN_LED_D, Receiver::activeReceiver == Receiver::ReceiverId::D);
+        #endif
+      }      
     }
 }
