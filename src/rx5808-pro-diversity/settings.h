@@ -27,6 +27,8 @@ SOFTWARE.
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
+//#define USE_SCREENSAVER
+
 // === Display Module ==========================================================
 //
 // You can choose one display module only. Only 128x64 OLED displays are
