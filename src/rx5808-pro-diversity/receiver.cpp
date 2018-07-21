@@ -146,19 +146,33 @@ namespace Receiver {
     }
 
     uint16_t updateRssi() {
+//        analogRead(PIN_RSSI_A); // Fake read to let ADC settle.
+//        rssiARaw = analogRead(PIN_RSSI_A);
+//        #ifdef USE_DIVERSITY
+//            analogRead(PIN_RSSI_B);
+//            rssiBRaw = analogRead(PIN_RSSI_B);
+//        #endif
+//        #ifdef USE_DUAL_DIVERSITY
+//            analogRead(PIN_RSSI_B);
+//            rssiBRaw = analogRead(PIN_RSSI_B);
+//            analogRead(PIN_RSSI_C);
+//            rssiCRaw = analogRead(PIN_RSSI_C);
+//            analogRead(PIN_RSSI_D);
+//            rssiDRaw = analogRead(PIN_RSSI_D);
+//       #endif
         analogRead(PIN_RSSI_A); // Fake read to let ADC settle.
-        rssiARaw = analogRead(PIN_RSSI_A);
+        rssiARaw = (analogRead(PIN_RSSI_A)+analogRead(PIN_RSSI_A)+analogRead(PIN_RSSI_A)) / 3;
         #ifdef USE_DIVERSITY
             analogRead(PIN_RSSI_B);
-            rssiBRaw = analogRead(PIN_RSSI_B);
+            rssiBRaw = (analogRead(PIN_RSSI_B)+analogRead(PIN_RSSI_B)+analogRead(PIN_RSSI_B)) / 3;
         #endif
         #ifdef USE_DUAL_DIVERSITY
             analogRead(PIN_RSSI_B);
-            rssiBRaw = analogRead(PIN_RSSI_B);
+            rssiBRaw = (analogRead(PIN_RSSI_B)+analogRead(PIN_RSSI_B)+analogRead(PIN_RSSI_B)) / 3;
             analogRead(PIN_RSSI_C);
-            rssiCRaw = analogRead(PIN_RSSI_C);
+            rssiCRaw = (analogRead(PIN_RSSI_C)+analogRead(PIN_RSSI_C)+analogRead(PIN_RSSI_C)) / 3;
             analogRead(PIN_RSSI_D);
-            rssiDRaw = analogRead(PIN_RSSI_D);
+            rssiDRaw = (analogRead(PIN_RSSI_D)+analogRead(PIN_RSSI_D)+analogRead(PIN_RSSI_D)) / 3;
        #endif
        
         rssiA = constrain(
