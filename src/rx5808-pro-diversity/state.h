@@ -7,9 +7,10 @@
 
 
 namespace StateMachine {
-    #define STATE_COUNT 7
+    #define STATE_COUNT 8
     enum class State : uint8_t {
         BOOT,
+        HOME,
         SEARCH,
         BANDSCAN,
         SCREENSAVER,

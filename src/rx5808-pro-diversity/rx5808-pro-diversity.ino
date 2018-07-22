@@ -49,7 +49,7 @@ static void globalMenuButtonHandler(
 );
 
 void setup()
-{
+{        
     setupPins();
 
     // Enable buzzer and LED for duration of setup process.
@@ -78,7 +78,7 @@ void setup()
     Buttons::registerChangeFunc(globalMenuButtonHandler);
 
     // Switch to initial state.
-    StateMachine::switchState(StateMachine::State::SEARCH);
+    StateMachine::switchState(StateMachine::State::HOME);
 }
 
 void setupPins() {
